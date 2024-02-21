@@ -1,0 +1,109 @@
+SQL Commands for threads clone
+
+
+
+CREATE TABLE user (
+    uid INT PRIMARY KEY AUTO_INCREMENT,
+    fname VARCHAR(40),
+    mname VARCHAR(40),
+    lname VARCHAR(50),
+    gender ENUM('male', 'female', 'other'),
+    dob DATE,
+    dor DATE,
+    email VARCHAR(255),
+    mobile BIGINT,
+    password VARCHAR(500),
+    about VARCHAR(200),
+    profilepic VARCHAR(255),
+    headerpic VARCHAR(255),
+    status TINYINT(1),
+    softdelete TINYINT(1)
+);
+
+
+
+CREATE TABLE thread (
+    tid INT PRIMARY KEY AUTO_INCREMENT,
+    uid INT,
+    content VARCHAR(500),
+    datetime DATETIME,
+    softdelete TINYINT(1),
+    FOREIGN KEY (uid) REFERENCES User(uid)
+);
+
+
+
+CREATE TABLE thread_img_vdo (
+    tivid INT PRIMARY KEY AUTO_INCREMENT,
+    tid INT,
+    filename VARCHAR(255),
+    filetype VARCHAR(20),
+    FOREIGN KEY (tid) REFERENCES Tweet(tid)
+);
+
+
+
+CREATE TABLE tags (
+    tagid INT PRIMARY KEY AUTO_INCREMENT,
+    tagname VARCHAR(100),
+    uid INT,
+    FOREIGN KEY (uid) REFERENCES User(uid)
+);
+
+
+
+
+CREATE TABLE thread_comment (
+    tcid INT PRIMARY KEY AUTO_INCREMENT,
+    tid INT,
+    uid INT,
+    comment VARCHAR(200),
+    datetime DATETIME,
+    softdelete TINYINT(1),
+    FOREIGN KEY (tid) REFERENCES Tweet(tid),
+    FOREIGN KEY (uid) REFERENCES User(uid)
+);
+
+
+
+
+CREATE TABLE thread_like (
+    tlid INT PRIMARY KEY AUTO_INCREMENT,
+    tid INT,
+    uid INT,
+    datetime DATETIME,
+    FOREIGN KEY (tid) REFERENCES Tweet(tid),
+    FOREIGN KEY (uid) REFERENCES User(uid)
+);
+
+
+CREATE TABLE cmt_like (
+    clid INT PRIMARY KEY AUTO_INCREMENT,
+    cmitid INT,
+    uid INT,
+    FOREIGN KEY (cmitid) REFERENCES Tweet_Comment(tcid),
+    FOREIGN KEY (uid) REFERENCES User(uid)
+);
+
+
+
+CREATE TABLE user_following (
+    ufid INT PRIMARY KEY AUTO_INCREMENT,
+    uid INT,
+    follow_uid INT,
+    softdelete TINYINT(1),
+    FOREIGN KEY (uid) REFERENCES User(uid),
+    FOREIGN KEY (follow_uid) REFERENCES User(uid)
+);
+
+
+
+
+CREATE TABLE post_profile_report (
+    pprid INT PRIMARY KEY AUTO_INCREMENT,
+    post_profile_id INT,
+    type VARCHAR(20),
+    reason VARCHAR(100),
+    datetime DATETIME,
+    FOREIGN KEY (post_profile_id) REFERENCES User(uid)
+);

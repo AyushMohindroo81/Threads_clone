@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to Threads</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            padding: 40px;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            color: #333333;
+            margin-bottom: 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 20px;
+            background-color: #F0F0F0;
+            border: 1px solid #DDDDDD;
+            border-radius: 4px;
+            color: #333333;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="password"]::placeholder {
+            color: #222222;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background-color: #333333;
+            border: none;
+            border-radius: 4px;
+            color: #FFFFFF;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #222222;
+        }
+
+        .signup-link a {
+            margin-top: 5px;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .signup-link a:hover{
+            color: black;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Login to Threads</h2>
+        </div>
+        <form action="/login_submit" method="post">
+            <input type="text" name="email" placeholder="Email or username">
+            <input type="password" name="pass" placeholder="Password">
+            <input type="submit" value="Log in">
+        </form>
+        <div class="signup-link">
+            <a href="/signup">Sign up for Threads</a>
+        </div>
+    </div>
+</body>
+</html>
